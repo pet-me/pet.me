@@ -1,5 +1,30 @@
 angular.module('starter.controllers', [])
 
+.controller('LoginCtrl', function($scope, LoginService, $ionicPopup, $state) {
+    $scope.data = {};
+
+    $scope.login = function() {
+        LoginService.loginUser($scope.data.username, $scope.data.password).success(function(data) {
+            $state.go('tab.dash');
+        }).error(function(data) {
+            var alertPopup = $ionicPopup.alert({
+                title: 'Login failed!',
+                template: 'Please check your credentials!'
+            });
+        });
+    }
+})
+.controller('RegisterCtrl', function($scope,$state) {
+	$scope.register = function() {
+	    $location.path('/register');
+	    $state.go('register');
+	    
+	}
+	
+	
+})
+
+
 .controller('DashCtrl', function($scope) {})
 
 .controller('ChatsCtrl', function($scope, Chats) {
@@ -13,20 +38,13 @@ angular.module('starter.controllers', [])
   $scope.chat = Chats.get($stateParams.chatId);
 })
 
-   .controller('LoginCtrl', function ($scope, LoginService, $ionicPopup, $state) {
-       $scope.data = {};
+.controller('FriendsCtrl', function($scope, Friends) {
+  $scope.friends = Friends.all();
+})
 
-       $scope.login = function () {
-           LoginService.loginUser($scope.data.username, $scope.data.password).success(function (data) {
-               $state.go('tab.dash');
-           }).error(function (data) {
-               var alertPopup = $ionicPopup.alert({
-                   title: 'Login failed!',
-                   template: 'Please check your credentials!'
-               });
-           });
-       }
-   })
+.controller('FriendDetailCtrl', function($scope, $stateParams, Friends) {
+  $scope.friend = Friends.get($stateParams.friendId);
+})
 
 .controller('AccountCtrl', function($scope) {
   $scope.settings = {
