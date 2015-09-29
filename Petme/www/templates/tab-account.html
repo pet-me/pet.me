@@ -1,9 +1,42 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="http://code.ionicframework.com/1.0.0/css/ionic.css" />
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+	<script src="http://code.ionicframework.com/1.0.0/js/ionic.bundle.js"></script>
+	<script src="http://code.jquery.com/jquery-2.0.1.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+</head>
+<body>
 <ion-view view-title="Account">
   <ion-content>
     <ion-list>
-    <ion-toggle  ng-model="settings.enableFriends">
+      <ion-item class="item-toggle">
         Enable Friends
-    </ion-toggle>
+        <label class="toggle">
+          <input type="checkbox" ng-model="settings.enableFriends">
+          <div class="track">
+            <div class="handle"></div>
+          </div>
+        </label>
+		
+      </ion-item>
     </ion-list>
+<label for="range-1">Age:</label>
+		<input name="range-1" id="range-1" data-highlight="true" data-theme="b" data-track-theme="b" min="18" max="65" value="18" step="5" onchange="showValue(this.value"  type="range"/>
+	
+
+	<script type="text/javascript">
+		
+function showValue(newValue)
+{
+	document.getElementById("range-1").innerHTML=newValue;
+}
   </ion-content>
 </ion-view>
+    
+</script>
+</body>
+</html>
