@@ -1,6 +1,7 @@
-<ion-view view-title="Profile">
+<ion-view view-title="Dashboard">
   <ion-content class="padding">
-  <label>Profile Picture</label>
+
+  <label><a class="" ui-sref="profile">View My Profile</a></label>
   <img id="image-1" alt="" src="http://www.simpsonmccrady.com/wp-content/uploads/2015/02/no_photo_available-male.jpg"/ height="50px" width="50px">
   
     <div class="list card">
@@ -9,25 +10,29 @@
       
       
         <div>
-          There is a fire in <b>sector 3</b>
+          You have <b>  <a class="" ui-sref="tab.chats">5</a>
+</b> new messages!
         </div>
       </div>
     </div>
     <div class="list card">
-      <div class="item item-divider">Health</div>
+      <div class="item item-divider">Matches</div>
       <div class="item item-body">
         <div>
-          You ate an apple today!
+          <a class="" ui-sref="tab.friends">You have new matches!</a>
         </div>
       </div>
     </div>
     <div class="list card">
-      <div class="item item-divider">Upcoming</div>
+      <div class="item item-divider">Pet Profiles</div>
       <div class="item item-body">
         <div>
-          You have <b>29</b> meetings on your calendar tomorrow.
+          <a class="" ui-sref="petprofile">Add New Pet Profile</a>
         </div>
       </div>
     </div>
+
+<a class="button button-block button-dark" ui-sref="login">Logout</a>
+
   </ion-content>
 </ion-view>

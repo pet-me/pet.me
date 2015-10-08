@@ -1,4 +1,4 @@
-<ion-view view-title="Friends">
+<ion-view view-title="Matches">
   <ion-content>
     <ion-list>
       <ion-item class="item-avatar" ng-repeat="friend in friends" type="item-text-wrap" href="#/tab/friend/{{friend.id}}">
@@ -6,5 +6,7 @@
         <h2>{{friend.name}}</h2>
       </ion-item>
     </ion-list>
+<a class="button button-block button-dark" ui-sref="login">Logout</a>
+
   </ion-content>
 </ion-view>

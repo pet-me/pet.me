@@ -1,5 +1,6 @@
 <ion-view view-title="Register" name="register-view">
   <ion-content class="padding">
+	<label>Member Registration</label>
       <div class="list list-inset">
           <label class="item item-input">
               <input type="text" placeholder="Enter Username" ng-model="data.reg_user">
@@ -8,9 +9,14 @@
               <input type="password" placeholder="Enter Password" ng-model="data.reg_pass">
           </label>
       </div>
-    <a class="button" ui-sref="tab.dash">Register Now</a>
+
+       <a class="button button-block button-dark"  ng-click="register()">Register</a>
+
+
+   <a class="button button-block button-dark" ui-sref="login">Cancel</a>
+
       
-      <a href="/tab.dash" class="button button-balanced" ng-click="register()>Register Now</a>
+
 
      
   </ion-content>

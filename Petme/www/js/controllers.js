@@ -4,7 +4,7 @@ angular.module('starter.controllers', [])
     $scope.data = {};
 
     $scope.login = function() {
-        LoginService.loginUser($scope.data.username, $scope.data.password).success(function(data) {
+        LoginService.loginUser($scope.data.reg_user, $scope.data.reg_pass).success(function(data) {
             $state.go('tab.dash');
         }).error(function(data) {
             var alertPopup = $ionicPopup.alert({
@@ -14,15 +14,22 @@ angular.module('starter.controllers', [])
         });
     }
 })
-.controller('RegisterCtrl', function($scope,$state) {
+
+.controller('RegisterCtrl', ['$scope', 'RegisterService',
+  function ($scope, RegisterService) {
+	$scope.data = {};
+	
 	$scope.register = function() {
-	    $location.path('/register');
-	    $state.go('register');
-	    
-	}
-	
-	
-})
+    RegisterService.registerUser($scope.data.reg_user, $scope.data.reg_pass).then(function(data)
+    {
+		console.log('returned JSON STRING: ' + data);
+     //TODO, parse JSON data and change webpage
+    
+    });
+	} 
+}
+ ])
+
 
 
 .controller('DashCtrl', function($scope) {})
