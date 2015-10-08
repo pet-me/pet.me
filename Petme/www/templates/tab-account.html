@@ -8,35 +8,43 @@
 	<script src="http://code.ionicframework.com/1.0.0/js/ionic.bundle.js"></script>
 	<script src="http://code.jquery.com/jquery-2.0.1.min.js"></script>
 	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
-</head>
-<body>
-<ion-view view-title="Account">
-  <ion-content>
-    <ion-list>
-      <ion-item class="item-toggle">
-        Enable Friends
-        <label class="toggle">
-          <input type="checkbox" ng-model="settings.enableFriends">
-          <div class="track">
-            <div class="handle"></div>
-          </div>
-        </label>
-		
-      </ion-item>
-    </ion-list>
-<label for="range-1">Age:</label>
-		<input name="range-1" id="range-1" data-highlight="true" data-theme="b" data-track-theme="b" min="18" max="65" value="18" step="5" onchange="showValue(this.value"  type="range"/>
-	
-
 	<script type="text/javascript">
 		
 function showValue(newValue)
 {
-	document.getElementById("range-1").innerHTML=newValue;
+	document.getElementById("range").innerHTML=newValue;
 }
+</script>
+
+</head>
+<body>
+<ion-view view-title="Preferences">
+  <ion-content>
+   
+  <label for="age_pref">Age Preference:</label>
+	  <select name="age_pref" id="age_pref" data-theme="a">
+		  <option value="age_pref1">Ages 18-24</option>
+		  <option value="age_pref2">Ages 25-34</option>
+		  <option value="age_pref3">Ages 35-44</option>
+		  <option value="age_pref4">Ages 45-54</option>
+		  <option value="age_pref5">Ages 55-65</option>
+	  </select>
+
+
+<div class="ui-field-contain">
+	<label for="select-1">I am looking for...</label>
+	<select name="select-1" id="select-1">
+		<option value="pref_seeking1">Male Seeking Female</option>
+		<option value="pref_seeking2">Female Seeking Male</option>
+		<option value="pref_seeking3">I like everyone!</option>
+	</select>
+</div>
+
+   <a class="button button-block button-dark" ui-sref="tab.dash">Save Preferences</a>
+<a class="button button-block button-dark" ui-sref="login">Logout</a>
+
   </ion-content>
 </ion-view>
-    
-</script>
+ 
 </body>
 </html>
