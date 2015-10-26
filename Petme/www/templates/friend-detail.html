@@ -4,12 +4,25 @@ This template loads for the 'tab.friend-detail' state (app.js)
 The FriendsCtrl pulls data from the Friends service (service.js)
 The Friends service returns an array of friend data
 -->
-<ion-view view-title="{{friend.name}}">
+
+<!-- How should the pet profiles look should they be on the right side of the profile? Where shoud the tag options be? Where
+should the top tags be displayed relative to the current layout I am thinking top tags on left pet profiles on right pet or pas on top
+this means if the person has not been pet or passed by the current viewer then there should be some sort of controller to do so but once 
+the current user has decided to pass well the profile wont be seen again but if they decided to pet then that input controller should
+no longer appear again. Also if the current user has not tagged the profile then their top tags should not be displayed-->
+
+<ion-view view-title="">
   <ion-content class="padding">
-    <img ng-src="{{friend.face}}" style="width: 64px; height: 64px">
-    <h3>Notes</h3>
-    <p>
-      {{friend.notes}}
-    </p>
+  <div id="profile-bg"></div>
+      <div id="content">
+        <div id="profile-info">
+        <!--  //graph.facebook.com/{{fid}}/picture format for getting url from facebook -->
+		    <img class="post-profile-image" ng-src="{{friend.face}}">
+		    <h3>{{friend.name}}</h3>
+		    <p>
+		      {{friend.notes}}
+		    </p>
+		</div>
+	  </div>
   </ion-content>
 </ion-view>

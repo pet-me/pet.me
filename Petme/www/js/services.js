@@ -120,20 +120,20 @@ angular.module('starter.services', [])
   // Some fake testing data
   var friends = [{
     id: 0,
-    name: 'Halle Berry',
+    name: 'Joe Schmo',
     notes: 'Enjoys drawing things',
     face: 
-'http://cdn.yournextshoes.com/wp-content/uploads/2015/07/Halle-Berry-Hair.jpg'
+    	'http://pmcvariety.files.wordpress.com/2013/01/6a00d8341bfc7553ef017c355fa15e970b-pi.jpg'
   }, {
     id: 1,
-    name: 'Joe Schmo',
+    name: 'Mike Jones',
     notes: 'Odd obsession with everything',
-    face: 'http://pmcvariety.files.wordpress.com/2013/01/6a00d8341bfc7553ef017c355fa15e970b-pi.jpg'
+    face: 'http://stupiddope.com/wp-content/uploads/2013/12/paul-wall.png'
   }, {
     id: 2,
-    name: 'Mike Jones',
+    name: 'John Smith',
     notes: 'Wears a sweet leather Jacket. I\'m a bit jealous',
-    face: 'http://stupiddope.com/wp-content/uploads/2013/12/paul-wall.png'
+    face: 'http://pmcdeadline2.files.wordpress.com/2012/10/john-smith-001__121019135219.jpg'
   }, {
     id: 3,
     name: 'Jane Doe',
@@ -141,10 +141,10 @@ angular.module('starter.services', [])
     face: 'http://dreamatico.com/data_images/girl/girl-2.jpg'
   }, {
     id: 4,
-    name: 'John Smith',
+    name: 'Hale Berry',
     notes: 'Just the nicest guy',
-    face: 
-'http://pmcdeadline2.files.wordpress.com/2012/10/john-smith-001__121019135219.jpg'
+    face: 'http://cdn.yournextshoes.com/wp-content/uploads/2015/07/Halle-Berry-Hair.jpg'
+
   }];
 
 

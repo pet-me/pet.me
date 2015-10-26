@@ -30,8 +30,6 @@ angular.module('starter.controllers', [])
 }
  ])
 
-
-
 .controller('DashCtrl', function($scope) {})
 
 .controller('ChatsCtrl', function($scope, Chats) {
@@ -39,6 +37,7 @@ angular.module('starter.controllers', [])
   $scope.remove = function(chat) {
     Chats.remove(chat);
   }
+  
 })
 
 .controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
@@ -47,6 +46,10 @@ angular.module('starter.controllers', [])
 
 .controller('FriendsCtrl', function($scope, Friends) {
   $scope.friends = Friends.all();
+  $scope.warn = function (message) {
+      alert(message);
+    };
+  // use this is picture viewer page slide to look at pics and set active slide to chosen picture $scope.myActiveSlide = 1;
 })
 
 .controller('FriendDetailCtrl', function($scope, $stateParams, Friends) {
