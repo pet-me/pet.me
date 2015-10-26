@@ -97,7 +97,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     .state('tab.friend-detail', {
       url: '/friend/:friendId',
       views: {
-        'tab-friends': {
+        'tab-chats': {
           templateUrl: 'templates/friend-detail.html',
           controller: 'FriendDetailCtrl'
         }
@@ -112,7 +112,17 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
         controller: 'AccountCtrl'
       }
     }
-  });
+  })
+  
+  .state('tab.account.editPro', {
+      url: '/editPro',
+      views: {
+        'tab-account-editPro': {
+          templateUrl: 'templates/tab-account-editPro.html',
+          controller: 'editProCtrl'
+        }
+      }
+    });
 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/login');
