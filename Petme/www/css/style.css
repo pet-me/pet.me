@@ -12,18 +12,20 @@ background-color: #99FFFF;
         background-position: 50% 20%;
         text-align: center;
       }
-
+      
+/* margin-top: is what controls the white border surrounding the pictures container*/
       #content {
         position: relative;
-        margin-top: 150px;
+        margin-top: 1px;
         background-color: white;
         box-shadow: 0px -1px 10px rgba(0,0,0,0.4);
-        padding-top: 200px;
+        padding-top: 350px;
       }
 
+/*top: is what controls the top of the pictures distance from the top of the white container*/
       #profile-info {
-       	position: absolute;
-        top: -95px;
+       	position: relative;
+        top: -265px;
         width: 100%;
         z-index: 2;
         text-align: center;
@@ -39,12 +41,20 @@ background-color: #99FFFF;
         box-shadow: 0px 0px 4px
       }
 
-/*right now the size of the photo is 512 how do I auto resize relative to the image dimension and the profile-bg container*/
-/*or would it just be better to leae*/
+/* width and height control the size of the picture */
       .post-profile-image {
         display: inline-block;
         vertical-align: top;
-        width: 128px;
-        height: 128px;
+        width: 248px;
+        height: 248px;
+        margin-right: 10px;
+      }
+      
+      .post-profile-image-snare {
+        display: inline-block;
+        padding-left: -400px;
+        vertical-align: top;
+        width: 95px;
+        height: 100%;
         margin-right: 10px;
       }

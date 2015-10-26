@@ -1,32 +1,16 @@
-
-<!--  Still need to test cant test on web editor test at home  -->
-<!-- use the code below for the image gallery -->
-<ion-slide-box active-slide="myActiveSlide">
-
-  <!-- Pass -->
-  <ion-slide>
-    <h2>Welcome!</h2>
-    <p>
-      Thanks for trying my app.
-    </p>
-  </ion-slide>
-
-  <!-- Current Page -->
-  <ion-slide auto-play="true">
-    <h2>Try this!</h2>
-    <p>
-      Tap the "Awesome" button anytime you want
-      to feel a bit more awesome. It's easy!
-    </p>
-  </ion-slide>
-  
-  <!-- Pet -->
-  <ion-slide>
-    <h2>Welcome!</h2>
-    <p>
-      Thanks for trying my app.
-    </p>
-  </ion-slide>
-
-  <!-- More slides here... -->
-</ion-slide-box>
+<ion-view view-title="Friends">
+  <ion-content>
+    <div class="list">
+    <div class="item" ng-repeat="friend in friends" item="friend" >
+    <div class="">
+    <div id="profile-bg"></div>
+      <div id="content">
+        <div id="profile-info">
+		    <img class="post-profile-image-snare" on-swipe-left="warn('Left')" on-tap="onTap('Tap')" on-swipe-right="warn('Right')" ng-src="{{friend.face}}">
+		</div>
+	  </div>
+    </div>
+    </div>
+    </div>
+  </ion-content>
+</ion-view>

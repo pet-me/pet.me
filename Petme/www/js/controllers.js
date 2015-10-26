@@ -46,14 +46,9 @@ angular.module('starter.controllers', [])
 
 .controller('FriendsCtrl', function($scope, Friends) {
   $scope.friends = Friends.all();
-  $scope.onSwipeLeft = function() {
-	    //RegisterService.registerUser($scope.data.reg_user, $scope.data.reg_pass).then(function(data)
-	    //{
-			console.log('You swiped left: ');
-	     //TODO, parse JSON data and change webpage
-	    
-	   // });
-		} 
+  $scope.warn = function (message) {
+      alert(message);
+    };
   // use this is picture viewer page slide to look at pics and set active slide to chosen picture $scope.myActiveSlide = 1;
 })
 
