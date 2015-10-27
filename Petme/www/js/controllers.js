@@ -1,4 +1,5 @@
 angular.module('starter.controllers', [])
+//controllers
 
 .controller('LoginCtrl', ['$scope', '$state', 'LoginService',
                              function ($scope, $state, LoginService) {
