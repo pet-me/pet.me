@@ -1,19 +1,31 @@
 angular.module('starter.controllers', [])
 
-.controller('LoginCtrl', function($scope, LoginService, $ionicPopup, $state) {
-    $scope.data = {};
-
-    $scope.login = function() {
-        LoginService.loginUser($scope.data.reg_user, $scope.data.reg_pass).success(function(data) {
-            $state.go('tab.dash');
-        }).error(function(data) {
-            var alertPopup = $ionicPopup.alert({
-                title: 'Login failed!',
-                template: 'Please check your credentials!'
-            });
-        });
-    }
-})
+.controller('LoginCtrl', ['$scope', '$state', 'LoginService',
+                             function ($scope, $state, LoginService) {
+                           	$scope.data = {};
+                           	
+                           	$scope.login = function() {
+                               LoginService.loginUser($scope.data.reg_user, $scope.data.reg_pass).then(function(data)
+                               {
+                           		console.log('returned JSON STRING: ' + data);
+                               
+                               if (!(data.username == 'null'))
+                            	   {
+                            	   		window.localStorage.setItem('token', data.username);
+                            	   		console.log('token get ' + window.localStorage['token']);
+                            	   		
+                            	   		$state.go('tab.dash');
+                            	   }
+                               
+                               else
+                            	   {
+                            	   		window.alert('Invalid login username/password');
+                            	   }
+                           		
+                               });
+                           	} 
+                           }
+                            ])
 
 .controller('RegisterCtrl', ['$scope', 'RegisterService',
   function ($scope, RegisterService) {
@@ -30,6 +42,8 @@ angular.module('starter.controllers', [])
 }
  ])
 
+
+
 .controller('DashCtrl', function($scope) {})
 
 .controller('ChatsCtrl', function($scope, Chats) {
@@ -37,7 +51,6 @@ angular.module('starter.controllers', [])
   $scope.remove = function(chat) {
     Chats.remove(chat);
   }
-  
 })
 
 .controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
@@ -46,10 +59,6 @@ angular.module('starter.controllers', [])
 
 .controller('FriendsCtrl', function($scope, Friends) {
   $scope.friends = Friends.all();
-  $scope.warn = function (message) {
-      alert(message);
-    };
-  // use this is picture viewer page slide to look at pics and set active slide to chosen picture $scope.myActiveSlide = 1;
 })
 
 .controller('FriendDetailCtrl', function($scope, $stateParams, Friends) {

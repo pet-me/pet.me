@@ -1,32 +1,18 @@
-<!-- plan is to change this chats tab into likes/chats page rather than having two separate ones and
-     make the current matches tab into the swipe left and swipe right thing friends-detail will be 
-     profile page-->
-
 <ion-view view-title="Chats">
   <ion-content>
-    <div class="list">
-    <div class="item" ng-repeat="chat in chats" item="chat" >
-    <div class="item-remove-animate item-avatar">
-    	<a class="item-remove-animate item-avatar icon-accessory" href="#/tab/friend/{{chat.id}}">
-    		<img ng-src="{{chat.face}}">
-    	</a>
-    	<h2>{{chat.name}}</h2>
-        <p>{{chat.lastText}}</p>
-        <!-- Possible put inside of a div -->
-    </div>
-    <div class="item-icon-right">
-    	<a class="icon ion-chevron-right icon-accessory" href="#/tab/chats/{{chat.id}}"></a>
-    </div>
-    </div>
-    </div>
-
-  </ion-content>
-</ion-view>
-
-
-<!--ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="chat in chats" type="item-text-wrap" href="#/tab/chats/{{chat.id}}">
+    <ion-list>
+      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="chat in chats" type="item-text-wrap" href="#/tab/chats/{{chat.id}}">
         <img ng-src="{{chat.face}}">
         <h2>{{chat.name}}</h2>
         <p>{{chat.lastText}}</p>
         <i class="icon ion-chevron-right icon-accessory"></i>
-      </ion-item-->
+
+        <ion-option-button class="button-assertive" ng-click="remove(chat)">
+          Delete
+        </ion-option-button>
+      </ion-item>
+    </ion-list>
+<a class="button button-block button-dark" ui-sref="login">Logout</a>
+
+  </ion-content>
+</ion-view>
