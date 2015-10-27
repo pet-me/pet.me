@@ -1,30 +1,36 @@
 angular.module('starter.services', [])
 
-.service('LoginService', function($q) {
-
-    return {
-        loginUser: function(name, pw) {
-            var deferred = $q.defer();
-            var promise = deferred.promise;
-            
-
-            if (name == 'admin'&& pw=='secret'|| reg_pass == 'Joe'&& pw=='Schmo'||name == 'Mike'&& pw=='Jones'||name == 'Jane'&& pw=='Doe'||name == 'John'&& pw=='Smith'||name == 'Halle'&& pw=='Berry'||name=='hello'&& pw=='world'){
-                deferred.resolve('Welcome ' + name + '!');
-            } else {
-                deferred.reject('Wrong credentials.');
-            }
-            promise.success = function(fn) {
-                promise.then(fn);
-                return promise;
-            }
-            promise.error = function(fn) {
-                promise.then(null, fn);
-                return promise;
-            }
+.factory('LoginService', ['$http', 'ApiEndpoint', function ($http, ApiEndpoint) {
+	return {
+		loginUser: function (name, pw) {
+			
+			var userData = $.param({reg_user: name, reg_pass: pw});
+			
+        var promise = 
+           $http({
+        	   	method: 'POST',
+		        url: ApiEndpoint.url + '/login',
+		        data: $.param({
+		            reg_user: name,
+		            reg_pass: pw
+		        }),
+		        headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+		    })
+		    .then(function(response) {
+		            // success
+		    	return response.data;
+		    }, 
+		    function(response) { // optional
+		            // failed
+				return response.data;
+		    })
+        
             return promise;
-        }
-    }
-})
+           }
+         }
+       }
+ ])
+
 
 .factory('RegisterService', ['$http', 'ApiEndpoint', function ($http, ApiEndpoint) {
 	return {
