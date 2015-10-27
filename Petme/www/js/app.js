@@ -35,16 +35,47 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   // Set up the various states which the app can be in.
   // Each state's controller can be found in controllers.js
   $stateProvider
-
+  
   .state('login', {
       url: '/login',
       templateUrl: 'templates/login.html',
       controller: 'LoginCtrl'
   })
+    .state('regtab', {
+    url: "/regtab",
+    abstract: true,
+    templateUrl: "templates/regtabs.html"
+  })
+  .state('welcome', {
+      url: '/welcome',
+      templateUrl: 'templates/welcome.html',
+      controller: 'WelcomeCtrl'
+  })
   .state('register', {
       url: '/register',
-      templateUrl: 'templates/register.html',
-      controller: 'RegisterCtrl'
+      
+          templateUrl: 'templates/register.html',
+          controller: 'RegisterCtrl'
+     
+    })
+   .state('register-detail', {
+      url: '/register/:reg_username',
+      views: {
+        'register': {
+          templateUrl: 'templates/register-detail.html',
+          controller: 'RegisterDetailCtrl'
+        }
+      }
+    })
+   .state('questionnaire', {
+      url: '/questionnaire',
+      templateUrl: 'templates/questionnaire.html',
+      controller: 'QuestionnaireCtrl'
+  })
+  .state('createprofile', {
+      url: '/createprofile',
+      templateUrl: 'templates/createprofile.html',
+      controller: 'CreateProfileCtrl'
   })
 
   // setup an abstract state for the tabs directive
@@ -97,7 +128,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     .state('tab.friend-detail', {
       url: '/friend/:friendId',
       views: {
-        'tab-friends': {
+        'tab-chats': {
           templateUrl: 'templates/friend-detail.html',
           controller: 'FriendDetailCtrl'
         }
@@ -112,8 +143,32 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
         controller: 'AccountCtrl'
       }
     }
+  })
+  
+  .state('tab.account.editPro', {
+      url: '/editPro',
+      views: {
+        'tab-account-editPro': {
+          templateUrl: 'templates/tab-account-editPro.html',
+          controller: 'editProCtrl'
+        }
+      }
+    })
+    .state('profile', {
+      url: '/profile',
+      templateUrl: 'templates/profile.html',
+      controller: 'ProfileCtrl'
+  })
+    .state('pet', {
+      url: '/pet',
+      templateUrl: 'templates/pet.html',
+      controller: 'PetCtrl'
+  })
+   .state('pass', {
+      url: '/pass',
+      templateUrl: 'templates/pass.html',
+      controller: 'PassCtrl'
   });
-
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/login');
 

@@ -1,4 +1,98 @@
 /* Empty. Add your own CSS if you like */
-.scroll-content{
-background-color: #99FFFF;
+
+#login-view,#welcome-view,#register-view {
+  background: url(../img/bg.jpg) no-repeat fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+    background-size: 450px 700px;
+    background-position:align-left;
+   
+    .reg_button1{
+    padding-top: 25px;
+    padding-right: 50px;
+    padding-bottom: 25px;
+    padding-left: 50px;
+    
 }
+   
+} 
+
+#profile-bg {
+        position: fixed;
+        left: 0;
+        top: 44px;
+        width: 100%;
+        height: 150px;
+        background-size: 100%;
+        background-position: 50% 20%;
+        text-align: center;
+      }
+      
+/* margin-top: is what controls the white border surrounding the pictures container*/
+      #content {
+        position: relative;
+        margin-top: 1px;
+        background-color: white;
+        box-shadow: 0px -1px 10px rgba(0,0,0,0.4);
+        padding-top: 350px;
+      }
+
+/*top: is what controls the top of the pictures distance from the top of the white container*/
+      #profile-info {
+       	position: relative;
+        top: -265px;
+        width: 100%;
+        z-index: 2;
+        text-align: center;
+      }
+
+      #profile-image {
+        display: block;
+        border-radius: 100px;
+        border: 1px solid #fff;
+        width: 128px;
+        height: 128px;
+        margin: 30px auto 0;
+        box-shadow: 0px 0px 4px
+      }
+
+/* width and height control the size of the picture */
+      .post-profile-image {
+        display: inline-block;
+        vertical-align: top;
+        width: 248px;
+        height: 248px;
+        margin-right: 10px;
+      }
+      .img-circle {
+    border-radius: 50%;
+}
+      #post-profile-image-snare {
+        display: inline-block;
+        padding-left: -400px;
+        vertical-align: top;
+        width: 290px;
+        height: 100%;
+        margin-right: 10px;
+        border-radius:50%;
+        
+      }
+      
+      #displayname_field{
+      
+      }
+      
+      #pet_pass1{
+      float:left;
+      margin:10%;
+      padding-down:100px;
+      }
+   
+    
+    
+      #pet_pass2{
+     float:right;
+     margin:10%;
+     padding-down:100px;
+      }
