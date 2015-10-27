@@ -1,19 +1,32 @@
 angular.module('starter.controllers', [])
 
-.controller('LoginCtrl', function($scope, LoginService, $ionicPopup, $state) {
-    $scope.data = {};
+.controller('LoginCtrl', ['$scope', '$state', 'LoginService',
+                             function ($scope, $state, LoginService) {
+                           	$scope.data = {};
+                           	
+                           	$scope.login = function() {
+                               LoginService.loginUser($scope.data.reg_user, $scope.data.reg_pass).then(function(data)
+                               {
+                           		console.log('returned JSON STRING: ' + data);
+                               
+                               if (!(data.username == 'null'))
+                            	   {
+                            	   		window.localStorage.setItem('token', data.username);
+                            	   		console.log('token get ' + window.localStorage['token']);
+                            	   		
+                            	   		$state.go('tab.dash');
+                            	   }
+                               
+                               else
+                            	   {
+                            	   		window.alert('Invalid login username/password');
+                            	   }
+                           		
+                               });
+                           	} 
+                           }
+                            ])
 
-    $scope.login = function() {
-        LoginService.loginUser($scope.data.reg_user, $scope.data.reg_pass).success(function(data) {
-            $state.go('tab.dash');
-        }).error(function(data) {
-            var alertPopup = $ionicPopup.alert({
-                title: 'Login failed!',
-                template: 'Please check your credentials!'
-            });
-        });
-    }
-})
 
 .controller('RegisterCtrl', ['$scope', 'RegisterService',
   function ($scope, RegisterService) {
