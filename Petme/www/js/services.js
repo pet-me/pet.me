@@ -1,30 +1,35 @@
 angular.module('starter.services', [])
 
-.service('LoginService', function($q) {
-
-    return {
-        loginUser: function(name, pw) {
-            var deferred = $q.defer();
-            var promise = deferred.promise;
-            
-
-            if (name == 'admin'&& pw=='secret'||name == 'Joe'&& pw=='Schmo'||name == 'Mike'&& pw=='Jones'||name == 'Jane'&& pw=='Doe'||name == 'John'&& pw=='Smith'||name == 'Halle'&& pw=='Berry'||name=='hello'&& pw=='world'){
-                deferred.resolve('Welcome ' + name + '!');
-            } else {
-                deferred.reject('Wrong credentials.');
-            }
-            promise.success = function(fn) {
-                promise.then(fn);
-                return promise;
-            }
-            promise.error = function(fn) {
-                promise.then(null, fn);
-                return promise;
-            }
+.factory('LoginService', ['$http', 'ApiEndpoint', function ($http, ApiEndpoint) {
+	return {
+		loginUser: function (name, pw) {
+			
+			var userData = $.param({reg_user: name, reg_pass: pw});
+			
+        var promise = 
+           $http({
+        	   	method: 'POST',
+		        url: ApiEndpoint.url + '/login',
+		        data: $.param({
+		            reg_user: name,
+		            reg_pass: pw
+		        }),
+		        headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+		    })
+		    .then(function(response) {
+		            // success
+		    	return response.data;
+		    }, 
+		    function(response) { // optional
+		            // failed
+				return response.data;
+		    })
+        
             return promise;
-        }
-    }
-})
+           }
+         }
+       }
+ ])
 
 .factory('RegisterService', ['$http', 'ApiEndpoint', function ($http, ApiEndpoint) {
 	return {
@@ -120,20 +125,20 @@ angular.module('starter.services', [])
   // Some fake testing data
   var friends = [{
     id: 0,
-    name: 'Joe Schmo',
+    name: 'Halle Berry',
     notes: 'Enjoys drawing things',
     face: 
-    	'http://pmcvariety.files.wordpress.com/2013/01/6a00d8341bfc7553ef017c355fa15e970b-pi.jpg'
+'http://cdn.yournextshoes.com/wp-content/uploads/2015/07/Halle-Berry-Hair.jpg'
   }, {
     id: 1,
-    name: 'Mike Jones',
+    name: 'Joe Schmo',
     notes: 'Odd obsession with everything',
-    face: 'http://stupiddope.com/wp-content/uploads/2013/12/paul-wall.png'
+    face: 'http://pmcvariety.files.wordpress.com/2013/01/6a00d8341bfc7553ef017c355fa15e970b-pi.jpg'
   }, {
     id: 2,
-    name: 'John Smith',
+    name: 'Mike Jones',
     notes: 'Wears a sweet leather Jacket. I\'m a bit jealous',
-    face: 'http://pmcdeadline2.files.wordpress.com/2012/10/john-smith-001__121019135219.jpg'
+    face: 'http://stupiddope.com/wp-content/uploads/2013/12/paul-wall.png'
   }, {
     id: 3,
     name: 'Jane Doe',
@@ -141,10 +146,10 @@ angular.module('starter.services', [])
     face: 'http://dreamatico.com/data_images/girl/girl-2.jpg'
   }, {
     id: 4,
-    name: 'Hale Berry',
+    name: 'John Smith',
     notes: 'Just the nicest guy',
-    face: 'http://cdn.yournextshoes.com/wp-content/uploads/2015/07/Halle-Berry-Hair.jpg'
-
+    face: 
+'http://pmcdeadline2.files.wordpress.com/2012/10/john-smith-001__121019135219.jpg'
   }];
 
 

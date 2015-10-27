@@ -1,16 +1,12 @@
-<ion-view view-title="Friends">
+<ion-view view-title="Matches">
   <ion-content>
-    <div class="list">
-    <div class="item" ng-repeat="friend in friends" item="friend" >
-    <div class="">
-    <div id="profile-bg"></div>
-      <div id="content">
-        <div id="profile-info">
-		    <img class="post-profile-image-snare" on-swipe-left="warn('Left')" on-tap="onTap('Tap')" on-swipe-right="warn('Right')" ng-src="{{friend.face}}">
-		</div>
-	  </div>
-    </div>
-    </div>
-    </div>
+    <ion-list>
+      <ion-item class="item-avatar" ng-repeat="friend in friends" type="item-text-wrap" href="#/tab/friend/{{friend.id}}">
+        <img ng-src="{{friend.face}}">
+        <h2>{{friend.name}}</h2>
+      </ion-item>
+    </ion-list>
+<a class="button button-block button-dark" ui-sref="login">Logout</a>
+
   </ion-content>
 </ion-view>
