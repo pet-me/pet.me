@@ -1,18 +1,45 @@
 angular.module('starter.services', [])
 
-.factory('LoginService', ['$http', 'ApiEndpoint', function ($http, ApiEndpoint) {
+.service('LoginService', function($q) {
+
+    return {
+        loginUser: function(name, pw) {
+            var deferred = $q.defer();
+            var promise = deferred.promise;
+            
+
+            if (name == 'admin'&& pw=='secret'|| reg_pass == 'Joe'&& pw=='Schmo'||name == 'Mike'&& pw=='Jones'||name == 'Jane'&& pw=='Doe'||name == 'John'&& pw=='Smith'||name == 'Halle'&& pw=='Berry'||name=='hello'&& pw=='world'){
+                deferred.resolve('Welcome ' + name + '!');
+            } else {
+                deferred.reject('Wrong credentials.');
+            }
+            promise.success = function(fn) {
+                promise.then(fn);
+                return promise;
+            }
+            promise.error = function(fn) {
+                promise.then(null, fn);
+                return promise;
+            }
+            return promise;
+        }
+    }
+})
+
+.factory('RegisterService', ['$http', 'ApiEndpoint', function ($http, ApiEndpoint) {
 	return {
-		loginUser: function (name, pw) {
+		registerUser: function (name, pw,email) {
 			
-			var userData = $.param({reg_user: name, reg_pass: pw});
+			var userData = $.param({reg_user: name, reg_pass: pw, reg_email:email});
 			
         var promise = 
            $http({
         	   	method: 'POST',
-		        url: ApiEndpoint.url + '/login',
+		        url: ApiEndpoint.url + '/register',
 		        data: $.param({
 		            reg_user: name,
-		            reg_pass: pw
+		            reg_pass: pw,
+		            reg_email:email
 		        }),
 		        headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 		    })
@@ -30,16 +57,16 @@ angular.module('starter.services', [])
          }
        }
  ])
-
-.factory('RegisterService', ['$http', 'ApiEndpoint', function ($http, ApiEndpoint) {
+ /*
+.factory('QuestionnaireService', ['$http', 'ApiEndpoint', function ($http, ApiEndpoint) {
 	return {
-		registerUser: function (name, pw) {
+		getUser: function (name, pw,email) {
 			
-			var userData = $.param({reg_user: name, reg_pass: pw});
+			var userData = $.param({reg_user: name, reg_pass: pw, reg_user: email});
 			
         var promise = 
            $http({
-        	   	method: 'POST',
+        	   	method: 'POST'',
 		        url: ApiEndpoint.url + '/register',
 		        data: $.param({
 		            reg_user: name,
@@ -62,7 +89,7 @@ angular.module('starter.services', [])
        }
  ])
 
-
+*/
 
 .factory('Chats', function() {
   // Might use a resource here that returns a JSON array
@@ -125,20 +152,20 @@ angular.module('starter.services', [])
   // Some fake testing data
   var friends = [{
     id: 0,
-    name: 'Halle Berry',
+    name: 'Joe Schmo',
     notes: 'Enjoys drawing things',
     face: 
-'http://cdn.yournextshoes.com/wp-content/uploads/2015/07/Halle-Berry-Hair.jpg'
+    	'http://pmcvariety.files.wordpress.com/2013/01/6a00d8341bfc7553ef017c355fa15e970b-pi.jpg'
   }, {
     id: 1,
-    name: 'Joe Schmo',
+    name: 'Mike Jones',
     notes: 'Odd obsession with everything',
-    face: 'http://pmcvariety.files.wordpress.com/2013/01/6a00d8341bfc7553ef017c355fa15e970b-pi.jpg'
+    face: 'http://stupiddope.com/wp-content/uploads/2013/12/paul-wall.png'
   }, {
     id: 2,
-    name: 'Mike Jones',
+    name: 'John Smith',
     notes: 'Wears a sweet leather Jacket. I\'m a bit jealous',
-    face: 'http://stupiddope.com/wp-content/uploads/2013/12/paul-wall.png'
+    face: 'http://pmcdeadline2.files.wordpress.com/2012/10/john-smith-001__121019135219.jpg'
   }, {
     id: 3,
     name: 'Jane Doe',
@@ -146,10 +173,10 @@ angular.module('starter.services', [])
     face: 'http://dreamatico.com/data_images/girl/girl-2.jpg'
   }, {
     id: 4,
-    name: 'John Smith',
+    name: 'Hale Berry',
     notes: 'Just the nicest guy',
-    face: 
-'http://pmcdeadline2.files.wordpress.com/2012/10/john-smith-001__121019135219.jpg'
+    face: 'http://cdn.yournextshoes.com/wp-content/uploads/2015/07/Halle-Berry-Hair.jpg'
+
   }];
 
 
