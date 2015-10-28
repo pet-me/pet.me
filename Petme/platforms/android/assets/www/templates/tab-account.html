@@ -1,51 +1,9 @@
-<!DOCTYPE html>
-
-<html>
-<head>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="http://code.ionicframework.com/1.0.0/css/ionic.css" />
-	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
-	<script src="http://code.ionicframework.com/1.0.0/js/ionic.bundle.js"></script>
-	<script src="http://code.jquery.com/jquery-2.0.1.min.js"></script>
-	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
-	<script type="text/javascript">
-		
-function showValue(newValue)
-{
-	document.getElementById("range").innerHTML=newValue;
-}
-</script>
-
-</head>
-<body>
-<ion-view view-title="Preferences">
+<ion-view view-title="Account">
   <ion-content>
-  <!--  add in som link to edit profile page -->
-   
-  <label for="age_pref">Age Preference:</label>
-	  <select name="age_pref" id="age_pref" data-theme="a">
-		  <option value="age_pref1">Ages 18-24</option>
-		  <option value="age_pref2">Ages 25-34</option>
-		  <option value="age_pref3">Ages 35-44</option>
-		  <option value="age_pref4">Ages 45-54</option>
-		  <option value="age_pref5">Ages 55-65</option>
-	  </select>
-
-
-<div class="ui-field-contain">
-	<label for="select-1">I am looking for...</label>
-	<select name="select-1" id="select-1">
-		<option value="pref_seeking1">Male Seeking Female</option>
-		<option value="pref_seeking2">Female Seeking Male</option>
-		<option value="pref_seeking3">I like everyone!</option>
-	</select>
-</div>
-
-   <a class="button button-block button-dark" ui-sref="tab.dash">Save Preferences</a>
-<a class="button button-block button-dark" ui-sref="login">Logout</a>
-
+    <ion-list>
+    <ion-toggle  ng-model="settings.enableFriends">
+        Enable Friends
+    </ion-toggle>
+    </ion-list>
   </ion-content>
 </ion-view>
- 
-</body>
-</html>

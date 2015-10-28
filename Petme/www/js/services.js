@@ -1,41 +1,15 @@
 angular.module('starter.services', [])
 
-.service('LoginService', function($q) {
-
-    return {
-        loginUser: function(name, pw) {
-            var deferred = $q.defer();
-            var promise = deferred.promise;
-            
-
-            if (name == 'admin'&& pw=='secret'||name == 'Joe'&& pw=='Schmo'||name == 'Mike'&& pw=='Jones'||name == 'Jane'&& pw=='Doe'||name == 'John'&& pw=='Smith'||name == 'Halle'&& pw=='Berry'||name=='hello'&& pw=='world'){
-                deferred.resolve('Welcome ' + name + '!');
-            } else {
-                deferred.reject('Wrong credentials.');
-            }
-            promise.success = function(fn) {
-                promise.then(fn);
-                return promise;
-            }
-            promise.error = function(fn) {
-                promise.then(null, fn);
-                return promise;
-            }
-            return promise;
-        }
-    }
-})
-
-.factory('RegisterService', ['$http', 'ApiEndpoint', function ($http, ApiEndpoint) {
+.factory('LoginService', ['$http', 'ApiEndpoint', function ($http, ApiEndpoint) {
 	return {
-		registerUser: function (name, pw) {
+		loginUser: function (name, pw) {
 			
 			var userData = $.param({reg_user: name, reg_pass: pw});
 			
         var promise = 
            $http({
         	   	method: 'POST',
-		        url: ApiEndpoint.url + '/register',
+		        url: ApiEndpoint.url + '/login',
 		        data: $.param({
 		            reg_user: name,
 		            reg_pass: pw
@@ -58,6 +32,70 @@ angular.module('starter.services', [])
  ])
 
 
+.factory('RegisterService', ['$http', 'ApiEndpoint', function ($http, ApiEndpoint) {
+	return {
+		registerUser: function (name, pw,email) {
+			
+			var userData = $.param({reg_user: name, reg_pass: pw, reg_email:email});
+			
+        var promise = 
+           $http({
+        	   	method: 'POST',
+		        url: ApiEndpoint.url + '/register',
+		        data: $.param({
+		            reg_user: name,
+		            reg_pass: pw,
+		            reg_email:email
+		        }),
+		        headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+		    })
+		    .then(function(response) {
+		            // success
+		    	return response.data;
+		    }, 
+		    function(response) { // optional
+		            // failed
+				return response.data;
+		    })
+        
+            return promise;
+           }
+         }
+       }
+ ])
+ /*
+.factory('QuestionnaireService', ['$http', 'ApiEndpoint', function ($http, ApiEndpoint) {
+	return {
+		getUser: function (name, pw,email) {
+			
+			var userData = $.param({reg_user: name, reg_pass: pw, reg_user: email});
+			
+        var promise = 
+           $http({
+        	   	method: 'POST'',
+		        url: ApiEndpoint.url + '/register',
+		        data: $.param({
+		            reg_user: name,
+		            reg_pass: pw
+		        }),
+		        headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+		    })
+		    .then(function(response) {
+		            // success
+		    	return response.data;
+		    }, 
+		    function(response) { // optional
+		            // failed
+				return response.data;
+		    })
+        
+            return promise;
+           }
+         }
+       }
+ ])
+
+*/
 
 .factory('Chats', function() {
   // Might use a resource here that returns a JSON array

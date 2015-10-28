@@ -1,7 +1,23 @@
 /* Empty. Add your own CSS if you like */
-.scroll-content{
-background-color: #99FFFF;
+
+#login-view,#welcome-view,#register-view {
+  background: url(../img/bg.jpg) no-repeat fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+    background-size: 450px 700px;
+    background-position:align-left;
+   
+    .reg_button1{
+    padding-top: 25px;
+    padding-right: 50px;
+    padding-bottom: 25px;
+    padding-left: 50px;
+    
 }
+   
+} 
+
 #profile-bg {
         position: fixed;
         left: 0;
@@ -49,12 +65,34 @@ background-color: #99FFFF;
         height: 248px;
         margin-right: 10px;
       }
-      
-      .post-profile-image-snare {
+      .img-circle {
+    border-radius: 50%;
+}
+      #post-profile-image-snare {
         display: inline-block;
         padding-left: -400px;
         vertical-align: top;
-        width: 95px;
+        width: 290px;
         height: 100%;
         margin-right: 10px;
+        border-radius:50%;
+        
+      }
+      
+      #displayname_field{
+      
+      }
+      
+      #pet_pass1{
+      float:left;
+      margin:10%;
+      padding-down:100px;
+      }
+   
+    
+    
+      #pet_pass2{
+     float:right;
+     margin:10%;
+     padding-down:100px;
       }

@@ -1,19 +1,22 @@
-<ion-view view-title="Register" name="register-view">
+<ion-view view-title="Register" name="register-view" id="register-view">
   <ion-content class="padding">
 	<label>User Registration</label>
 	<!-- add in link to edit profile page -->
-      <div class="list list-inset">
-          <label class="item item-input">
-              <input type="text" placeholder="Enter Username" ng-model="data.reg_user">
+      <div class="list list-inset" style="background-color:transparent;">
+          <label class="item item-input" style="background-color:transparent;">
+              <input type="text" placeholder="Enter Username" ng-model="data.reg_user" style="background-color:transparent;">
           </label>
-          <label class="item item-input">
-              <input type="password" placeholder="Enter Password" ng-model="data.reg_pass">
+          <label class="item item-input" style="background-color:transparent;">
+              <input type="password" placeholder="Enter Password" ng-model="data.reg_pass" style="background-color:transparent;">
+          </label>
+            <label class="item item-input" style="background-color:transparent;">
+              <input type="email" placeholder="Enter Email" ng-model="data.reg_email" style="background-color:transparent;">
           </label>
       </div>
 
 <!--  might need a ng-model -->
-       <a class="button button-block button-dark"  ng-click="register()">Register</a>
-
+       <a class="button button-block button-dark" ng_click="register()" ui-sref="questionnaire">Register</a>
+ 
 
    <a class="button button-block button-dark" ui-sref="login">Cancel</a>
 

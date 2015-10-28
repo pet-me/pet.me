@@ -1,26 +1,39 @@
 angular.module('starter.controllers', [])
 
-.controller('LoginCtrl', function($scope, LoginService, $ionicPopup, $state) {
-    $scope.data = {};
+.controller('LoginCtrl', ['$scope', '$state', 'LoginService',
+                             function ($scope, $state, LoginService) {
+                           	$scope.data = {};
+                           	
+                           	$scope.login = function() {
+                               LoginService.loginUser($scope.data.reg_user, $scope.data.reg_pass).then(function(data)
+                               {
+                           		console.log('returned JSON STRING: ' + data);
+                               
+                               if (!(data.username == 'null'))
+                            	   {
+                            	   		window.localStorage.setItem('token', data.username);
+                            	   		console.log('token get ' + window.localStorage['token']);
+                            	   		
+                            	   		$state.go('tab.dash');
+                            	   }
+                               
+                               else
+                            	   {
+                            	   		window.alert('Invalid login username/password');
+                            	   }
+                           		
+                               });
+                           	} 
+                           }
+                            ])
 
-    $scope.login = function() {
-        LoginService.loginUser($scope.data.reg_user, $scope.data.reg_pass).success(function(data) {
-            $state.go('tab.dash');
-        }).error(function(data) {
-            var alertPopup = $ionicPopup.alert({
-                title: 'Login failed!',
-                template: 'Please check your credentials!'
-            });
-        });
-    }
-})
 
 .controller('RegisterCtrl', ['$scope', 'RegisterService',
   function ($scope, RegisterService) {
 	$scope.data = {};
 	
 	$scope.register = function() {
-    RegisterService.registerUser($scope.data.reg_user, $scope.data.reg_pass).then(function(data)
+    RegisterService.registerUser($scope.data.reg_user, $scope.data.reg_pass, $scope.data.email).then(function(data)
     {
 		console.log('returned JSON STRING: ' + data);
      //TODO, parse JSON data and change webpage
@@ -29,9 +42,25 @@ angular.module('starter.controllers', [])
 	} 
 }
  ])
-
-.controller('DashCtrl', function($scope) {})
-
+.controller('WelcomeCtrl', function($scope) {})
+/*
+.controller('QuestionnaireCtrl', function($scope,$stateParams,QuestionnaireService) {
+    $scope.data = {};
+	
+	$scope.questionnaire = function() {
+    QuestionnaireService.getUser($scope.data.reg_user, $scope.data.reg_pass).then(function(data)
+    {
+	$scope.reg_username=QuestionnaireService.get($stateParams.reg_user);
+   
+    });
+	}
+})
+*/
+.controller('QuestionnaireCtrl', function($scope) {})
+.controller('CreateProfileCtrl', function($scope) {})
+.controller('Profile', function($scope) {})
+.controller('PetCtrl', function($scope) {})
+.controller('PassCtrl', function($scope) {})
 .controller('ChatsCtrl', function($scope, Chats) {
   $scope.chats = Chats.all();
   $scope.remove = function(chat) {

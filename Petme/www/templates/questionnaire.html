@@ -1,0 +1,77 @@
+<ion-view view-title="pet.me" name="questionnaire-view" id="questionnaire-view">
+  <ion-content class="padding">
+  
+ 
+
+<label>Please Enter Your Display Name:</label><br>
+
+ 
+<div>
+ <label class="item item-input" style="background-color:transparent;">
+              <input type="text" placeholder="Display Name" ng-model="data.displayname" style="background-color:transparent;">
+          </label>
+ </div> 
+  <label for="age_pref">What is the best age group for you?:</label><br>
+	  <select name="age_pref" id="age_pref" data-theme="a" >
+		  <option value="age_pref1" ng-model="data.age1">Ages 18-24</option>
+		  <option value="age_pref2" ng-model="data.age2">Ages 25-34</option>
+		  <option value="age_pref3" ng-model="data.age3">Ages 35-44</option>
+		  <option value="age_pref4" ng-model="data.age4">Ages 45-54</option>
+		  <option value="age_pref5" ng-model="data.age5">Ages 55-65</option>
+	  </select>
+
+
+<div class="ui-field-contain">
+	<label for="select-1">What are you seeking in a match?</label>
+	<select name="select-1" id="select-1">
+		<option value="pref_seeking1" ng-model="data.selectmale">Male Seeking Female</option>
+		<option value="pref_seeking2" ng-model="data.selectfemale">Female Seeking Male</option>
+		<option value="pref_seeking3" ng-model="data.selectboth">I like everyone!</option>
+	</select>
+</div>
+<div class="ui-field-contain">
+	<label for="select-2">Would you date someone without a pet?</label>
+	<select name="select-2" id="select-2">
+	
+		<option value="date_without_pet" ng-model="data.datewithoutpet">Yes</option>
+		<option value="date_with_pet" ng-model="data.datewithpet">No</option>
+	</select>
+</div>
+<div class="ui-field-contain">
+	<label for="select-3">Which of these closesly resembles your favorite pet?</label>
+	<select name="select-3" id="select-3">
+	
+		  <optgroup label="Dogs" ng-model="data.speciesdog">
+		  <option value="dog_pref1" ng-model="data.speciesdog1">Any</option>
+		  <option value="dog_pref2" ng-model="data.speciesdog2">Beagle</option>
+		  <option value="dog_pref3" ng-model="data.speciesdog3">Collie</option>
+		  <option value="dog_pref4" ng-model="data.speciesdog4">Husky</option>
+		  <option value="dog_pref5" ng-model="data.speciesdog5">Yorkshire Terrier</option>
+		  <option value="dog_pref6" ng-model="data.speciesdog6">German Shepherd</option>
+		  <option value="dog_pref7" ng-model="data.speciesdog7">Rottweiler</option>
+		  <option value="dog_pref8" ng-model="data.speciesdog8">Bulldog</option>
+		  <option value="dog_pref9" ng-model="data.speciesdog9">St. Bernard</option>
+		   <option value="dog_pref10" ng-model="data.speciesdog10">Boxer</option>
+		    <option value="dog_pref11" ng-model="data.speciesdog11">Cocker Spaniel</option>
+		     <option value="dog_pref12" ng-model="data.speciesdog12">Dalmation</option>
+		      <option value="dog_pref13" ng-model="data.speciesdog13">Poodle</option>
+		       <option value="dog_pref14" ng-model="data.speciesdog14">Sheepdog</option>
+		        <option value="dog_pref15" ng-model="data.speciesdog15">Other</option>
+		  </optgroup>
+		  <optgroup label="Cats" ng-model="data.speciescat">
+		  		   <option value="cat_pref1" ng-model="data.speciescat1">Any</option>
+		  		   <option value="cat_pref2" ng-model="data.speciescat2">Persian</option>
+		    <option value="cat_pref3" ng-model="data.speciescat2">Siamese</option>
+		    <option value="cat_pref3" ng-model="data.speciescat2">Other</option>
+		  </optgroup>
+		
+		  <option value="pet_pref3" ng-model="data.speciesbird">Birds</option>
+		  <option value="pet_pref4" ng-model="data.speciesreptiles">Reptiles</option>
+		  <option value="pet_pref5" ng-model="data.specieshorses">Horses</option>
+	</select>
+</div>
+  
+    <a class="button button-large button-outline button-light" ui-sref="createprofile" id="reg_button1" >Preferences Saved</a>
+
+  </ion-content>
+</ion-view>
