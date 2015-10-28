@@ -12,8 +12,8 @@ angular.module('starter.controllers', [])
                                if (!(data.username == 'null'))
                             	   {
                             	   		window.localStorage.setItem('token', data.username);
+                            	   		// token
                             	   		console.log('token get ' + window.localStorage['token']);
-                            	   		
                             	   		$state.go('tab.dash');
                             	   }
                                
@@ -78,12 +78,62 @@ angular.module('starter.controllers', [])
   $scope.warn = function (message) {
       alert(message);
     };
-  // use this is picture viewer page slide to look at pics and set active slide to chosen picture $scope.myActiveSlide = 1;
+  $scope.lastEventCalled = '';
+  var element = angular.element(document.querySelector('#eventPlaceholder'));
+  var events = 
+	  [
+                {
+                	event: 'swipedown',
+                	text: 'petPic'
+                },
+                {
+                	event: 'swipeup',
+                	text: 'personPic'
+                },
+                {
+                	event: 'swipeleft',
+                	text: 'pass'
+                },
+                {
+                	event: 'swiperight',
+                	text: 'pet'
+                }
+      ];
+  angular.forEach(events, function(obj)
+  {
+	  $ionicGesture.on(obj.event,
+			  function (event)
+			  {
+		  			$scope.$apply(function ()
+		  			{
+		  				if(obj.text == 'pet')
+		  				{
+		  					alert(obj.text);
+		  				}
+		  				if(obj.text == 'pass')
+		  				{
+		  					alert(obj.text);
+		  				}
+		  				$scope.lastEventCalled = obj.text;
+		  			});
+			  }, element);
+  });
 })
 
-.controller('FriendDetailCtrl', function($scope, $stateParams, Friends) {
-  $scope.friend = Friends.get($stateParams.friendId);
-})
+.controller('FriendDetailCtrl', ['$scope', '$state', 'ProfileService', '$stateParams', 'Friends',
+             function ($scope, $state, ProfileService, $stateParams, Friends) 
+             {
+	  			$scope.friend = Friends.get($stateParams.friendId);
+	  			$scope.friend.face = 'http://petme.heliohost.org/img/' + window.localStorage['token'] + '.jpg';
+	  			$scope.data = {};
+	  			ProfileService.getProfile().then(function(data)
+	  			{
+	  				$scope.bio = data.userBio;
+	  				$scope.fName = data.firstName;
+	  				$scope.lName = data.lastName;
+			    });
+             } 
+])
 
 .controller('AccountCtrl', function($scope) {
   $scope.settings = {
