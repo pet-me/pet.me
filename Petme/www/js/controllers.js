@@ -125,12 +125,6 @@ angular.module('starter.controllers', [])
              {
 	  			$scope.friend = Friends.get($stateParams.friendId);
 	  			$scope.data = {};
-	  			ProfileService.getProfile().then(function(data)
-	  			{
-	  				$scope.bio = data.userBio;
-	  				$scope.fName = data.firstName;
-	  				$scope.lName = data.lastName;
-			    });
              } 
 ])
 
