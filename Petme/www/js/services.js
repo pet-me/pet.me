@@ -221,8 +221,15 @@ angular.module('starter.services', [])
       return friends;
     },
     get: function(friendId) {
-      // Simple index lookup
-      return friends[friendId];
+      
+    	 for (var i = 0; i < friends.length; i++) {
+    	        if (friends[i].id === parseInt(friendId)) {
+    	          return friends[i];
+    	        }
+    	      }
+    	 
+    	 console.log('got emtpy');
+    	      return null;
     }
   }
 });
