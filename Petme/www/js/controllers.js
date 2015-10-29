@@ -124,7 +124,6 @@ angular.module('starter.controllers', [])
              function ($scope, $state, ProfileService, $stateParams, Friends) 
              {
 	  			$scope.friend = Friends.get($stateParams.friendId);
-	  			$scope.friend.face = 'http://petme.heliohost.org/img/' + window.localStorage['token'] + '.jpg';
 	  			$scope.data = {};
 	  			ProfileService.getProfile().then(function(data)
 	  			{
