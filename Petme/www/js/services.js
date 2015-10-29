@@ -42,11 +42,13 @@ angular.module('starter.services', [])
            $http({
         	   	method: 'POST',
 		        url: ApiEndpoint.url + '/register',
+		        // sending the data in form format makes it secure by putting it in form format 
 		        data: $.param({
 		            reg_user: name,
 		            reg_pass: pw,
 		            reg_email:email
 		        }),
+		        // container with format info
 		        headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 		    })
 		    .then(function(response) {
@@ -63,6 +65,32 @@ angular.module('starter.services', [])
          }
        }
  ])
+ 
+ .factory('ProfileService', ['$http', 'ApiEndpoint', function ($http, ApiEndpoint) {
+	return {
+		getProfile: function () 
+		{
+        var promise = 
+           $http({
+        	    method: 'GET',
+		        url: ApiEndpoint.url + '/profile/query?username=' + window.localStorage['token']
+		    })
+		    .then(function(response) {
+		            // success
+		    	return response.data;
+		    }, 
+		    function(response) { // optional
+		            // failed
+				return response.data;
+		    })
+        
+            return promise;
+           }
+         }
+       }
+ ])
+ 
+
  /*
 .factory('QuestionnaireService', ['$http', 'ApiEndpoint', function ($http, ApiEndpoint) {
 	return {

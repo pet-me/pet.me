@@ -1,9 +1,7 @@
 <ion-view view-title="pet.me" id="friends-view">
-  <ion-content>
+  <ion-content id="eventPlaceholder">
        
-    <div class="list">
-    <div class="item" ng-repeat="friend in friends" item="friend" >
-    <div class="">
+   
     <div id="profile-bg"></div>
       <div id="content">
         <div id="profile-info">
@@ -12,18 +10,14 @@
     		<img class="img-cirlce"  id="post-profile-image-snare" on-swipe-left="warn('Left')" on-tap="onTap('Tap')" on-swipe-right="warn('Right')" ng-src="{{friend.face}}" >
     	
     	<h2>{{friend.name}}</h2>
-        <p>{{friend.lastText}}</p>
+        <p>{{lastEventCalled}}</p>
 		    </a>
 		    <a class="button button-medium button-energized" id="pet_pass1" ui-sref="pet">pet</a>
-		<a class="button button-medium button-energized" id="pet_pass2" ui-sref="pass" >pass</a>
+		    <a class="button button-medium button-energized" id="pet_pass2" ui-sref="pass" >pass</a>
 		</div>
 		
 	  </div>
 	   
-    </div>
-
-    </div>
-    </div>
    
   </ion-content>
 </ion-view>
