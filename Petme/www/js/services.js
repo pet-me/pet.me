@@ -31,6 +31,41 @@ angular.module('starter.services', [])
        }
  ])
 
+.factory('CreateProfileService', ['$http', 'ApiEndpoint', function ($http, ApiEndpoint) {
+	return {
+		createprofile: function (usr, fname, lname, biosnip) {
+			
+			var userData = $.param({username: usr, firstName: fname, lastName: lname, userBio: biosnip});
+			
+        var promise = 
+           $http({
+        	   	method: 'POST',
+		        url: ApiEndpoint.url + '/profile/update',
+		        // sending the data in form format makes it secure by putting it in form format 
+		        data: $.param({
+		        	username: usr,
+		        	firstName: fname,
+		        	lastName: lname,
+		        	userBio: biosnip
+		        }),
+		        // container with format info
+		        headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+		    })
+		    .then(function(response) {
+		            // success
+		    	return response.data;
+		    }, 
+		    function(response) { // optional
+		            // failed
+				return response.data;
+		    })
+        
+            return promise;
+           }
+         }
+       }
+ ])
+
 
 .factory('RegisterService', ['$http', 'ApiEndpoint', function ($http, ApiEndpoint) {
 	return {
@@ -125,42 +160,51 @@ angular.module('starter.services', [])
 
 */
 
-.factory('Chats', function() {
+.factory('Chats', function($http, ApiEndpoint) {
   // Might use a resource here that returns a JSON array
-
-  // Some fake testing data
-  var chats = [{
-    id: 0,
-    name: 'Joe Schmo',
-    lastText: 'You on your way?',
-    face: 'http://pmcvariety.files.wordpress.com/2013/01/6a00d8341bfc7553ef017c355fa15e970b-pi.jpg'
-  }, {
-    id: 1,
-    name: 'Mike Jones',
-    lastText: 'Hey, it\'s me',
-    face: 'http://stupiddope.com/wp-content/uploads/2013/12/paul-wall.png'
-  }, {
-    id: 2,
-    name: 'John Smith',
-    lastText: 'Did you get the ice cream?',
-    face: 
-'http://pmcdeadline2.files.wordpress.com/2012/10/john-smith-001__121019135219.jpg'
-  }, {
-    id: 3,
-    name: 'Jane Doe',
-    lastText: 'I should buy a boat',
-    face: 'http://dreamatico.com/data_images/girl/girl-2.jpg'
-  }, {
-    id: 4,
-    name: 'Halle Berry',
-    lastText: 'Look at my mukluks!',
-    face: 
-'http://cdn.yournextshoes.com/wp-content/uploads/2015/07/Halle-Berry-Hair.jpg'
-  }];
-
+	
+	var name = window.localStorage['token'];
+	
+	var userData = $.param({username: name});
+	
+	
+	var chats = [];
+	
+	var promise = $http({
+ 	    method: 'POST',
+        url: ApiEndpoint.url + '/message',
+     // sending the data in form format makes it secure by putting it in form format 
+        data: $.param({
+            username: name
+        }),
+        // container with format info
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+    })
+    .then(function(response) {
+            // success
+    	
+    	for (var i in response.data.array)
+    	{
+    		var item = response.data.array[i];
+    		
+    		chats.push({
+    			id : item.id,
+    			name : item.name,
+    			lastText: item.lastText,
+    			face : item.face
+    		});
+    	}
+    	
+    	//return response.data.array;
+    }, 
+    function(response) { // optional
+            // failed
+		//return response.data;
+    });
+	
   return {
     all: function() {
-      return chats;
+    	return chats;
     },
     remove: function(chat) {
       chats.splice(chats.indexOf(chat), 1);
@@ -179,48 +223,48 @@ angular.module('starter.services', [])
 /**
  * A simple example service that returns some data.
  */
-.factory('Friends', function() {
-  // Might use a resource here that returns a JSON array
+.factory('Friends', function($http, ApiEndpoint) {
+	var friends = [];	
+	
+  var promise =  $http({
+ 	    method: 'GET',
+	        url: ApiEndpoint.url + '/profile/friends?username=' + window.localStorage['token']
+	    })
+	    .then(function(response) {
+	            // success
+	    	//return response.data.array;
 
-  // Some fake testing data
-  // Some fake testing data
-  var friends = [{
-    id: 0,
-    name: 'Joe Schmo',
-    notes: 'Enjoys drawing things',
-    face: 
-    	'http://pmcvariety.files.wordpress.com/2013/01/6a00d8341bfc7553ef017c355fa15e970b-pi.jpg'
-  }, {
-    id: 1,
-    name: 'Mike Jones',
-    notes: 'Odd obsession with everything',
-    face: 'http://stupiddope.com/wp-content/uploads/2013/12/paul-wall.png'
-  }, {
-    id: 2,
-    name: 'John Smith',
-    notes: 'Wears a sweet leather Jacket. I\'m a bit jealous',
-    face: 'http://pmcdeadline2.files.wordpress.com/2012/10/john-smith-001__121019135219.jpg'
-  }, {
-    id: 3,
-    name: 'Jane Doe',
-    notes: 'I think he needs to buy a boat',
-    face: 'http://dreamatico.com/data_images/girl/girl-2.jpg'
-  }, {
-    id: 4,
-    name: 'Hale Berry',
-    notes: 'Just the nicest guy',
-    face: 'http://cdn.yournextshoes.com/wp-content/uploads/2015/07/Halle-Berry-Hair.jpg'
-
-  }];
-
-
+	    	for (var i in response.data.array)
+	    	{
+	    		var item = response.data.array[i];
+	    		
+	    		friends.push({
+	    			id : item.id,
+	    			name : item.name,
+	    			notes: item.notes,
+	    			face : item.face
+	    		});
+	    	}
+	    }, 
+	    function(response) { // optional
+	            // failed
+			//return response.data;
+	    });
+  
   return {
     all: function() {
       return friends;
     },
     get: function(friendId) {
-      // Simple index lookup
-      return friends[friendId];
+      
+    	 for (var i = 0; i < friends.length; i++) {
+    	        if (friends[i].id === parseInt(friendId)) {
+    	          return friends[i];
+    	        }
+    	      }
+    	 
+    	 console.log('got emtpy');
+    	      return null;
     }
   }
 });

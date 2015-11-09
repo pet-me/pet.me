@@ -1,10 +1,23 @@
-<ion-view view-title="pet.me" name="createprofile-view" id="createprofile-view">
+<ion-view view-title="Create Profile" name="createprofile-view" id="createprofile-view">
   <ion-content class="padding">
-  
-     
-
-<label>Create Profile</label><br><br><br><br>
-<p>This page is blank until we get more data please proceed to dashboard. </p><br><br><br><br>
+  <div id="profile-bg-cp">
+  	<img class="post-profile-image" ng-src="{{pictureUrl}}">
+  </div>
+     <button class="button-block button-calm">Take Photo</button>
+      <label class="item item-input" style="background-color:transparent;">
+              <input type="text" placeholder="Say Something" ng-model="bioSnip" style="background-color:transparent;">  
+      </label>
+       <label class="item item-input" style="background-color:transparent;">
+              <input type="text" placeholder="UserName" ng-model="username" style="background-color:transparent;">
+          </label>
+           <label class="item item-input" style="background-color:transparent;">
+              <input type="text" placeholder="First Name" ng-model="firstname" style="background-color:transparent;">
+          </label>
+           <label class="item item-input" style="background-color:transparent;">
+              <input type="text" placeholder="Last Name" ng-model="lastname" style="background-color:transparent;">
+          </label>
+      
+<!--  to create a profile we need a bio and a photo -->
 
  
 
@@ -12,7 +25,7 @@
   
   
   
-    <a class="button button-large button-outline button-light" ui-sref="tab.dash" id="reg_button1" >Go To Dashboard</a>
+    <a class="button button-large button-outline button-dark" ng-click="create()" ui-sref="tab.dash" id="reg_button1" >Go To Dashboard</a>
 
   </ion-content>
 </ion-view>
