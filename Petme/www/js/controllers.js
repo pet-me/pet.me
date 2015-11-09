@@ -152,6 +152,7 @@ angular.module('starter.controllers', [])
              {
 	  			$scope.friend = Friends.get($stateParams.friendId);
 	  			$scope.data = {};
+<<<<<<< HEAD
              } 
 ])
 
@@ -159,6 +160,8 @@ angular.module('starter.controllers', [])
              function ($scope) 
              {
           $scope.myFace = 'http://petme.heliohost.org/img/' + window.localStorage['token'] + '.jpg';
+=======
+>>>>>>> origin/master
              } 
 ])
 
